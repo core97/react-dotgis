@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 import { navItems } from './constants';
 
@@ -10,7 +11,7 @@ const Layout = ({ children }) => {
   
   const renderNavItem = (route, textContent) => {
     return (
-      <li>
+      <li key={uuidv4()}>
         <Link to={route}>{textContent}</Link>
       </li>
     );

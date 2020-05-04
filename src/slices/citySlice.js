@@ -12,7 +12,7 @@ export const citySlice = createSlice({
           ...state.cities,
           {
             name: action.payload.name,
-            forecasts: action.payload.forecasts((eachForecast) => {
+            forecasts: action.payload.forecasts.map((eachForecast) => {
               return {
                 date: eachForecast.date,
                 temp: eachForecast.temp,
@@ -33,6 +33,6 @@ export const citySlice = createSlice({
 
 export const { addCity } = citySlice.actions;
 
-export const selectCity = state => state.city;
+export const selectCity = state => state.city.cities;
 
 export default citySlice.reducer;
