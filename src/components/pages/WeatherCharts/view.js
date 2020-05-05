@@ -11,6 +11,7 @@ import { addCity, selectCity } from '../../../slices/citySlice';
 import SearchCityForm from '../../views/SearchCityForm';
 import WindChart from '../../views/WindChart';
 import TempMaxChart from '../../views/TempMaxChart';
+import TempMinChart from '../../views/TempMinChart';
 import CloudsChart from '../../views/CloudsChart';
 
 /* --- Request Weather API ---- */
@@ -76,7 +77,7 @@ const WeatherCharts = () => {
           </Grid>
           <Grid item xs={12} md={6}>
             <Card className={classes.card}>
-            <div className="container">Hola</div>
+              <TempMinChart/>
             </Card>
           </Grid>
         </Grid>
