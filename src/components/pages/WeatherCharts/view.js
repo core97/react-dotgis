@@ -48,6 +48,7 @@ const WeatherCharts = () => {
       }
     }
     if(!dataStore.cities.length) getForecasts();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderCities = (name) => {

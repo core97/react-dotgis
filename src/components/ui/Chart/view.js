@@ -1,20 +1,26 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { Doughnut, Radar, Polar, Bar } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
-import Chartjs from 'chart.js';
 
 import './styles.scss';
 
 const Chart = ({ title = '', data, options, type }) => {
-  const chartRef = useRef(null);
+  let chart;
 
-  useEffect(() => {
-    new Chartjs(chartRef.current, { type, data, options });
-  }, [data, options, type]);
+  if(type === 'doughnut') {
+    chart = (<Doughnut data={data} options={options}/>);
+  } else if(type === 'bar') {
+    chart = (<Bar data={data} options={options}/>);
+  } else if(type === 'radar') {
+    chart = (<Radar data={data} options={options}/>);
+  } else if(type === 'polarArea') {
+    chart = (<Polar data={data} options={options}/>);
+  }
 
   return (
     <figure>
       <h3>{title}</h3>
-      <canvas ref={chartRef}/>
+      {chart}
     </figure>
   );
 };
@@ -26,7 +32,7 @@ Chart.propTypes = {
     datasets: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
   options: PropTypes.object,
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
 };
 
 export default Chart;
