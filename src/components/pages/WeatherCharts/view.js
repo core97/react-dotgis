@@ -48,7 +48,7 @@ const WeatherCharts = () => {
       }
     }
     if(!dataStore.cities.length) getForecasts();
-  }, [dispatch]);
+  }, []);
 
   const renderCities = (name) => {
     return (
