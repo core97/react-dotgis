@@ -9,7 +9,7 @@ const Chart = ({ title = '', data, options, type }) => {
 
   useEffect(() => {
     new Chartjs(chartRef.current, { type, data, options });
-  }, []);
+  }, [data, options, type]);
 
   return (
     <figure>

@@ -1,3 +1,10 @@
 .container {
   height: 200px;
 }
+.WeatherCharts__form {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 50px;
+}

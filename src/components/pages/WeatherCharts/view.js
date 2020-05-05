@@ -1,51 +1,53 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import { makeStyles } from '@material-ui/core/styles';
 
-/* --- Redux (action and state)--- */
-import { addCity, selectCity } from '../../../slices/citySlice';
+/* --- Redux (state)--- */
+import { selectCity } from '../../../slices/citySlice';
 
-/* --- Request Weather API ---- */
-import { getForecastCity } from '../../../services/weatherAPI';
+/* --- Views Components --- */
+import SearchCityForm from '../../views/SearchCityForm';
+import WindChart from '../../views/WindChart';
 
 import './styles.scss';
 
-const WeatherCharts = () => {
-  const cities = useSelector(selectCity);
-  const dispatch = useDispatch();
+const useStyles = makeStyles({
+  card: {
+    padding: '50px 20px',
+  },
+});
 
-  useEffect(() => {
-    const forecastCity = async () => {
-      dispatch(addCity(await getForecastCity('Madrid')));
-      dispatch(addCity(await getForecastCity('Bogota')));
-    };
-    // forecastCity()
-  }, [dispatch]);
+const WeatherCharts = () => {
+  const dataStore = useSelector(selectCity);
+  const classes = useStyles();
 
   return (
     <>
-      <Grid container spacing={8}>
-        <Grid item xs={12} md={6}>
-          <Card>
-            <div className="container">Hola</div>
-          </Card>
+      <div className="WeatherCharts__form">
+      <SearchCityForm />
+      </div>
+      {dataStore.cities.length > 0 ? (
+        <Grid container spacing={8}>
+          <Grid item xs={12} md={6}>
+            <Card className={classes.card}>
+              <WindChart />
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Card>
+              <div className="container">Hola</div>
+            </Card>
+          </Grid>
+          <Grid item xs={12}>
+            <Card>
+              <div className="container">Hola</div>
+            </Card>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <Card>
-            <div className="container">Hola</div>
-          </Card>
-        </Grid>
-        <Grid item xs={12}>
-          <Card>
-            <div className="container">Hola</div>
-          </Card>
-        </Grid>
-      </Grid>
-      {cities.length > 0 ? (
-        cities.map((item) => <p>{item.name}</p>)
       ) : (
-        <p>Cargando ...</p>
+        <p></p>
       )}
     </>
   );
