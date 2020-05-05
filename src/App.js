@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import WeatherCharts from './components/pages/WeatherCharts';
 
+/* --- Layout --- */
 import Layout from './components/layout';
 
 import './App.scss';
