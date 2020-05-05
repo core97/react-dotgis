@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 
-/* --- Redux (state)--- */
-import { addCity, selectCity } from '../../../slices/citySlice';
+/* --- Redux (actions and state)--- */
+import { addCity, removeCity, selectCity } from '../../../slices/citySlice';
 
 /* --- Views Components --- */
 import SearchCityForm from '../../views/SearchCityForm';
@@ -46,12 +46,25 @@ const WeatherCharts = () => {
       }
     }
     getForecasts();
-  }, []);
+  }, [dispatch]);
+
+  const renderCities = (name) => {
+    return (
+      <li onClick={() => dispatch(removeCity({ name }))}>
+        {name}
+      </li>
+    );
+  }
 
   return (
     <>
       <div className="WeatherCharts__form">
       <SearchCityForm />
+      </div>
+      <div className="WeatherCharts__current-cities">
+        <ul>
+          {dataStore.cities.map(eachCity => renderCities(eachCity.name))}
+        </ul>
       </div>
       {dataStore.cities.length > 0 ? (
         <Grid container spacing={8}>
@@ -63,11 +76,6 @@ const WeatherCharts = () => {
           <Grid item xs={12} md={6}>
             <Card className={classes.card}>
               <TempMaxChart/>
-            </Card>
-          </Grid>
-          <Grid item xs={12}>
-            <Card>
-              <div className="container">Hola</div>
             </Card>
           </Grid>
           <Grid item xs={12} md={6}>

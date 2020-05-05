@@ -31,16 +31,17 @@ export const citySlice = createSlice({
         ],
       };
     },
-  },
-  changeTimeframe: (state, action) => {
-    return {
-      ...state,
-      timeframe: action.payload.timeframe
+    removeCity: (state, action) => {
+      return {
+        ...state,
+        cities: state.cities.filter(eachCity => eachCity.name !== action.payload.name)
+      }
     }
-  }
+  },
+  
 });
 
-export const { addCity } = citySlice.actions;
+export const { addCity, removeCity } = citySlice.actions;
 
 export const selectCity = state => state.city;
 

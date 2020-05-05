@@ -13,7 +13,7 @@ import stylesChart from '../../ui/Chart/chartStyles';
 // Doughnut Chart
 const WindChart = () => {
   const dataStore = useSelector(selectCity);
-  const { cities, timeframe } = dataStore;
+  const { cities } = dataStore;
 
   const data = {
     labels: cities.map((eachCity) => eachCity.name),
