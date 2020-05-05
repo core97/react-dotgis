@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 
 /* --- Redux (actions and state)--- */
@@ -21,7 +22,8 @@ import './styles.scss';
 
 const useStyles = makeStyles({
   card: {
-    padding: '50px 20px',
+    padding: '20px',
+    paddingBottom: '50px'
   },
 });
 
@@ -45,7 +47,7 @@ const WeatherCharts = () => {
         console.log(error);
       }
     }
-    getForecasts();
+    if(!dataStore.cities.length) getForecasts();
   }, [dispatch]);
 
   const renderCities = (name) => {
@@ -90,7 +92,10 @@ const WeatherCharts = () => {
           </Grid>
         </Grid>
       ) : (
-        <p></p>
+        <div className="loading">
+           <CircularProgress/>
+        </div>
+       
       )}
     </>
   );

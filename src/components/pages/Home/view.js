@@ -4,9 +4,9 @@ import './styles.scss';
 
 const Home = () => {
   return (
-    <>
-      <h2>Hello from Home</h2>
-    </>
+    <section className="Home">
+      <h2 className="Home__title">Ánimo para los días que quedan.<br></br>Cada día que menos 💪</h2>
+    </section>
   );
 };
 

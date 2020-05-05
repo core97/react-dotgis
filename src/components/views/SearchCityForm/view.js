@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 const SearchCity = () => {
   const [cityToSearch, setCityToSearch] = useState('');
   const [isExistCity, setIsExistCity] = useState(false);
+  const [isError, setError] = useState(false);
   const dispatch = useDispatch();
   const dataStore = useSelector(selectCity);
   const classes = useStyles();
@@ -38,7 +39,9 @@ const SearchCity = () => {
       setCityToSearch('');
       setIsExistCity(false);
     } catch (error) {
-      console.log(error);
+      setError(true);
+      setCityToSearch('');
+      console.log(error.message);
     }
   };
 
@@ -48,11 +51,12 @@ const SearchCity = () => {
         className={classes.input}
         value={cityToSearch}
         onChange={(e) => setCityToSearch(e.target.value)}
-        label="¿Te gustaría añadir una ciudad?"
+        label="Would you like to add a city?"
       />
-      <Button type="submit" disabled={dataStore.cities.length >= 8 ? true : false}>Añadir ciudad</Button>
-      {dataStore.cities.length >= 8 && <p>Has alcanzado el máximo de ciudades que puedes ver</p>}
-      {isExistCity && <p>La ciudad que buscas ya se está visualizando</p>}
+      <Button type="submit" disabled={dataStore.cities.length >= 8 ? true : false}>Add city</Button>
+      {dataStore.cities.length >= 8 && <p>You have reached the maximum of cities that you can see</p>}
+      {isExistCity && <p>The city you are looking for is already being displayed</p>}
+      {isError && <p>Error when add city</p>}
     </form>
   );
 };
