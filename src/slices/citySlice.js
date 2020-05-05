@@ -3,11 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 export const citySlice = createSlice({
   name: 'city',
   initialState: {
+    // Forecast period by days 
+    timeframe: 1,
     cities: [],
   },
   reducers: {
     addCity: (state, action) => {
       return {
+        ...state,
         cities: [
           ...state.cities,
           {
@@ -29,6 +32,12 @@ export const citySlice = createSlice({
       };
     },
   },
+  changeTimeframe: (state, action) => {
+    return {
+      ...state,
+      timeframe: action.payload.timeframe
+    }
+  }
 });
 
 export const { addCity } = citySlice.actions;

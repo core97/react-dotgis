@@ -1,14 +1,13 @@
 header {
-  height: 5vh;
-  background-color: royalblue;
+  height: 60px;
+  background-color: #2d2d2d;
   padding: 0 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
   nav {
-    width: 50%;
-
     & ul {
       display: flex;
       flex-direction: row;
@@ -23,15 +22,37 @@ header {
       }
     }
   }
+
+  & .link-linkedin {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: flex-end;
+    padding-right: 10px;
+
+    & img {
+      max-width: 25px;
+      filter: invert(1);
+      mix-blend-mode: difference;
+    }
+  }
 }
 
 article {
   display: flex;
+  flex-direction: column;
   /* total screen less header and footer */
-  min-height: calc(100vh - 10vh);
+  min-height: calc(100vh - 120px);
+  padding: 50px;
 }
 
 footer {
-  height: 5vh;
-  background-color: seagreen;
+  height: 60px;
+  background-color: #2d2d2d;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
