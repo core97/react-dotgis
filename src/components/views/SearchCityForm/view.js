@@ -48,9 +48,9 @@ const SearchCity = () => {
         className={classes.input}
         value={cityToSearch}
         onChange={(e) => setCityToSearch(e.target.value)}
-        label="Intruce las ciudades que quieres ver"
+        label="¿Te gustaría añadir una ciudad?"
       />
-      <Button type="submit" disabled={dataStore.cities.length >= 8 ? true : false}>Ver ciudad</Button>
+      <Button type="submit" disabled={dataStore.cities.length >= 8 ? true : false}>Añadir ciudad</Button>
       {dataStore.cities.length >= 8 && <p>Has alcanzado el máximo de ciudades que puedes ver</p>}
       {isExistCity && <p>La ciudad que buscas ya se está visualizando</p>}
     </form>

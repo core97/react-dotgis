@@ -10,18 +10,16 @@ import Chart from '../../ui/Chart';
 /* --- Custom style for Chart Component --- */
 import stylesChart from '../../ui/Chart/chartStyles';
 
-// Doughnut Chart
-const WindChart = () => {
-  const dataStore = useSelector(selectCity);
-  const { cities, timeframe } = dataStore;
+// Radar chart
+const TempMaxChart = () => {
+    const { cities } = useSelector(selectCity);
 
   const data = {
     labels: cities.map((eachCity) => eachCity.name),
     datasets: [
       {
-        data: cities.map((eachCity) => eachCity.forecasts[0].wind),
+        data: cities.map((eachCity) => eachCity.forecasts[0].tempMax),
         borderColor: stylesChart.color.solids.map(eachColor => eachColor),
-        backgroundColor: stylesChart.color.alphas.map(eachColor => eachColor),
         borderWidth: 1,
       },
     ],
@@ -29,15 +27,16 @@ const WindChart = () => {
 
   const options = {
     legend: {
-      position: 'right',
-    },
-  };
+        display: false
+    }
+}
 
   return (
     <section>
-      <Chart title="Wind" data={data} options={options} type="doughnut" />
+      <Chart title="Max Temperature" data={data} options={options} type="radar" />
     </section>
   );
-};
 
-export default WindChart;
+}
+
+export default TempMaxChart;
