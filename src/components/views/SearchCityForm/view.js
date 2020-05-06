@@ -38,6 +38,7 @@ const SearchCity = () => {
       dispatch(addCity(await getForecastCity(cityCapitalized)));
       setCityToSearch('');
       setIsExistCity(false);
+      setError(false);
     } catch (error) {
       setError(true);
       setCityToSearch('');
